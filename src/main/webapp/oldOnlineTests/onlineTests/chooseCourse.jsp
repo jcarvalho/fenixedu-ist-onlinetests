@@ -25,7 +25,7 @@
 <%@ taglib uri="http://fenix-ashes.ist.utl.pt/fenix-renderers" prefix="fr"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<h2><bean:message key="label.professorships"/></h2>
+<h2><bean:message key="title.tests"/></h2>
 
 <table class="tstyle5 thmiddle mtop1 mbottom1">
 	<tr>
