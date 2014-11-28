@@ -50,17 +50,22 @@
 						<td><bean:write name="distributedTest" property="beginDateTimeFormatted"/></td>
 						<td><bean:write name="distributedTest" property="endDateTimeFormatted"/></td>
 						<td class="acenter">
-							<% 
-							org.fenixedu.bennu.core.domain.User user = Authenticate.getUser();
-							org.fenixedu.academic.domain.onlineTests.StudentTestLog studentTestLog = distributedTest.getLastSubmissionStudentTestLog(student.toString());
-								if(studentTestLog!=null && studentTestLog.getChecksum()!=null){ %>
-							<bean:define id="logId" value="<%= studentTestLog.getExternalId().toString() %>"/>
+							<%
+							    org.fenixedu.bennu.core.domain.User user = Authenticate.getUser();
+														org.fenixedu.academic.domain.onlineTests.StudentTestLog studentTestLog = distributedTest.getLastSubmissionStudentTestLog(student.toString());
+															if(studentTestLog!=null && studentTestLog.getChecksum()!=null){
+							%>
+							<bean:define id="logId" value="<%=studentTestLog.getExternalId().toString()%>"/>
 							<html:link page="<%="/studentTests.do?method=exportChecksum&logId="+logId.toString()%>">
 								<bean:message key="message.studentTestLog.checksumReport" />
 							</html:link>
-							<%} else {%>
+							<%
+							    } else {
+							%>
 								-
-							<%}%>
+							<%
+							    }
+							%>
 						</td>
 					</tr>
 				</logic:iterate>
