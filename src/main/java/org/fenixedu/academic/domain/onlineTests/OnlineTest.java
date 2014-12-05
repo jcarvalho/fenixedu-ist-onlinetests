@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.fenixedu.academic.domain.Evaluation;
+import org.fenixedu.academic.domain.ExecutionCourse;
 import org.fenixedu.academic.domain.GradeScale;
 import org.fenixedu.academic.dto.InfoEvaluation;
 import org.fenixedu.academic.dto.onlineTests.InfoOnlineTest;
@@ -43,6 +44,18 @@ public class OnlineTest extends OnlineTest_Base {
         }
 
         return result;
+    }
+    
+    public static List<OnlineTest> readOnlineTestsByExecutionCourse(ExecutionCourse executionCourse){
+        List<OnlineTest> associatedOnlineTests = new ArrayList<OnlineTest>();
+
+        for (Evaluation evaluation : executionCourse.getAssociatedEvaluationsSet()) {
+            if (evaluation instanceof OnlineTest) {
+                associatedOnlineTests.add((OnlineTest) evaluation);
+            }
+        }
+
+        return associatedOnlineTests;
     }
 
     public OnlineTest() {
