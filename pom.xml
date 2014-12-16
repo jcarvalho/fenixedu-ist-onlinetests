@@ -19,7 +19,7 @@
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/ist-dsi/fenixedu-onlinetests/issues/</url>
+        <url>https://github.com/ist-dsi/fenixedu-ist-onlinetests/issues/</url>
     </issueManagement>
 
     <licenses>
@@ -32,12 +32,12 @@
 
     <ciManagement>
         <system>Travis CI</system>
-        <url>https://travis-ci.org/ist-dsi/fenixedu-onlinetests</url>
+        <url>https://travis-ci.org/ist-dsi/fenixedu-ist-onlinetests</url>
     </ciManagement>
 
     <scm>
-        <connection>scm:git:git@github.com:ist-dsi/fenixedu-onlinetests.git</connection>
-        <developerConnection>scm:git:git@github.com:ist-dsi/fenixedu-onlinetests.git</developerConnection>
+        <connection>scm:git:git@github.com:ist-dsi/fenixedu-ist-onlinetests.git</connection>
+        <developerConnection>scm:git:git@github.com:ist-dsi/fenixedu-ist-onlinetests.git</developerConnection>
         <url>http://tecnico.ulisboa.pt/</url>
         <tag>HEAD</tag>
     </scm>
