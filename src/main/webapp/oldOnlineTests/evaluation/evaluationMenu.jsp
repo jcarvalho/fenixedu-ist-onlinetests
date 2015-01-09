@@ -47,7 +47,7 @@
 					</a>
 				</li>
 			</c:if>
-			<c:if test="${professorship.permissions.evaluationWorksheets}">
+			<c:if test="${professorship.permissions.evaluationTests}">
 				<li>
 					<a href="${base}/evaluation/onlineTestsIndex.faces?executionCourseID=${executionCourse.externalId}">
 						<bean:message key="link.onlineTests"/>
