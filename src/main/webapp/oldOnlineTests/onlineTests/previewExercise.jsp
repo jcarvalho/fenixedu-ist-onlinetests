@@ -28,6 +28,7 @@
 <html:form action="/exerciseCreation">
 <html:hidden bundle="HTMLALT_RESOURCES" altKey="hidden.page" property="page" value="2"/>
 <html:hidden bundle="HTMLALT_RESOURCES" altKey="hidden.method" property="method" value="prepareCreateExercise"/>
+<html:hidden bundle="HTMLALT_RESOURCES" altKey="hidden.executionCourseID" property="executionCourseID" value="<%= pageContext.findAttribute("executionCourseID").toString() %>"/>
 
 <html:hidden bundle="HTMLALT_RESOURCES" altKey="hidden.objectCode" property="objectCode"/>
 <html:hidden bundle="HTMLALT_RESOURCES" altKey="hidden.exerciseCode" property="exerciseCode"/>
@@ -94,7 +95,7 @@
 <logic:present name="subQuestion">
 <bean:define id="subQuestion" name="subQuestion"/>
 <table>
-	<tr><td
+	<tr><td>
 	<logic:iterate id="questionBody" name="subQuestion" property="presentation">
 		<bean:define id="questionLabel" name="questionBody" property="label"/>
 		<%if (((String)questionLabel).equals("flow")){%>
