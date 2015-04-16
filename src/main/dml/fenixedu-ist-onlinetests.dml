@@ -1,5 +1,31 @@
 package org.fenixedu.academic.domain;
 
+valueType org.fenixedu.academic.util.tests.CorrectionAvailability as CorrectionAvailability {
+    externalizeWith {
+        Integer getAvailability();
+    }
+}
+
+valueType org.fenixedu.academic.util.tests.CorrectionFormula as CorrectionFormula {
+    externalizeWith {
+        Integer getFormula();
+    }
+}
+
+valueType org.fenixedu.academic.util.tests.Response as Response {
+    externalizeWith {
+        String org.fenixedu.academic.util.tests.ResponseExternalization.externalize();
+    }
+
+    internalizeWith org.fenixedu.academic.util.tests.ResponseExternalization.internalize();
+}
+
+valueType org.fenixedu.academic.util.tests.TestType as TestType {
+    externalizeWith {
+        Integer getType();
+    }
+}
+
 class onlineTests.OnlineTest extends Evaluation {
 }
 
@@ -34,6 +60,8 @@ class onlineTests.Question  {
     String xmlFile;
     String xmlFileName;
 }
+
+class onlineTests.QuestionFile extends .org.fenixedu.bennu.io.domain.GenericFile;
 
 class onlineTests.StudentTestLog  {
     DateTime dateDateTime;
@@ -109,6 +137,15 @@ relation QuestionsFromMetadata {
         multiplicity *;
     }
     onlineTests.Metadata playsRole metadata;
+}
+
+relation QuestionFileQuestion {
+    protected onlineTests.Question playsRole question {
+        multiplicity 1..1;
+    }
+    protected onlineTests.QuestionFile playsRole questionFile {
+        multiplicity 0..1;
+    }
 }
 
 relation QuestionsFromTest {

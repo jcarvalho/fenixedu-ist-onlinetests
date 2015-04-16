@@ -18,7 +18,7 @@
  */
 /*
  * Created on 23/Set/2003
- *  
+ * 
  */
 package org.fenixedu.academic.service.services.teacher.onlineTests;
 
@@ -45,6 +45,7 @@ import org.fenixedu.academic.service.services.exceptions.FenixServiceException;
 import org.fenixedu.academic.service.services.exceptions.InvalidArgumentsServiceException;
 import org.fenixedu.academic.service.services.exceptions.NotAuthorizedException;
 import org.fenixedu.academic.service.services.exceptions.tests.InvalidXMLFilesException;
+import org.fenixedu.academic.util.FileUtils;
 import org.fenixedu.academic.utils.Element;
 import org.fenixedu.academic.utils.ParseMetadata;
 import org.fenixedu.academic.utils.ParseQuestionException;
@@ -86,10 +87,7 @@ public class InsertExercise {
                 try {
                     ParseSubQuestion parseQuestion = new ParseSubQuestion();
                     parseQuestion.parseSubQuestion(xmlFile);
-                    Question question = new Question();
-                    question.setXmlFile(xmlFile);
-                    question.setXmlFileName(xmlFileName);
-                    question.setVisibility(new Boolean("true"));
+                    Question question = new Question(xmlFileName, xmlFile, true);
                     questionMap.put(xmlFileName, question);
                 } catch (DomainException domainException) {
                     throw domainException;
@@ -193,10 +191,10 @@ public class InsertExercise {
     private Map<String, List<LabelValueBean>> readFromZip(Map<String, List<LabelValueBean>> xmlListMap,
             InputStream zipInputStream, String dirBaseName) throws IOException {
 
-        File zipFile = pt.utl.ist.fenix.tools.util.FileUtils.copyToTemporaryFile(zipInputStream);
+        File zipFile = FileUtils.copyToTemporaryFile(zipInputStream);
         File unzipDir = null;
         try {
-            unzipDir = pt.utl.ist.fenix.tools.util.FileUtils.unzipFile(zipFile);
+            unzipDir = FileUtils.unzipFile(zipFile);
             if (!unzipDir.isDirectory()) {
                 throw new IOException("error");
             }
