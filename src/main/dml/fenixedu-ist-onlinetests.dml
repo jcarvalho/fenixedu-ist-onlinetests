@@ -61,6 +61,8 @@ class onlineTests.Question  {
     String xmlFileName;
 }
 
+class onlineTests.QuestionFile extends .org.fenixedu.bennu.io.domain.GenericFile;
+
 class onlineTests.StudentTestLog  {
     DateTime dateDateTime;
     String event;
@@ -135,6 +137,15 @@ relation QuestionsFromMetadata {
         multiplicity *;
     }
     onlineTests.Metadata playsRole metadata;
+}
+
+relation QuestionFileQuestion {
+    protected onlineTests.Question playsRole question {
+        multiplicity 1..1;
+    }
+    protected onlineTests.QuestionFile playsRole questionFile {
+        multiplicity 0..1;
+    }
 }
 
 relation QuestionsFromTest {

@@ -18,7 +18,7 @@
  */
 /*
  * Created on 23/Set/2003
- *  
+ * 
  */
 package org.fenixedu.academic.service.services.teacher.onlineTests;
 
@@ -87,10 +87,7 @@ public class InsertExercise {
                 try {
                     ParseSubQuestion parseQuestion = new ParseSubQuestion();
                     parseQuestion.parseSubQuestion(xmlFile);
-                    Question question = new Question();
-                    question.setXmlFile(xmlFile);
-                    question.setXmlFileName(xmlFileName);
-                    question.setVisibility(new Boolean("true"));
+                    Question question = new Question(xmlFileName, xmlFile, true);
                     questionMap.put(xmlFileName, question);
                 } catch (DomainException domainException) {
                     throw domainException;

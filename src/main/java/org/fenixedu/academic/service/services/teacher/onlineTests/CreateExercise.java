@@ -18,7 +18,7 @@
  */
 /*
  * Created on 23/Set/2003
- *  
+ * 
  */
 package org.fenixedu.academic.service.services.teacher.onlineTests;
 
@@ -64,22 +64,25 @@ public class CreateExercise {
                 throw new InvalidArgumentsServiceException();
             }
         }
-        Question question = new Question();
 
-        question.setVisibility(new Boolean(true));
+        String xmlFile;
+
         try {
-            question.setXmlFile(getQuestion(subQuestion, questionText, secondQuestionText, options, shuffle, correctFeedbackText,
-                    wrongFeedbackText, breakLineBeforeResponseBox, breakLineAfterResponseBox));
+            xmlFile =
+                    getQuestion(subQuestion, questionText, secondQuestionText, options, shuffle, correctFeedbackText,
+                            wrongFeedbackText, breakLineBeforeResponseBox, breakLineAfterResponseBox);
         } catch (UnsupportedEncodingException e) {
             throw new FenixServiceException(e);
         }
         final List<Question> visibleQuestions = metadata.getVisibleQuestions();
+        String xmlFileName;
         if (metadataId == null) {
-            question.setXmlFileName("Pergunta" + visibleQuestions.size() + ".xml");
+            xmlFileName = "Pergunta" + visibleQuestions.size() + ".xml";
         } else {
-            question.setXmlFileName(metadata.correctFileName("Pergunta" + visibleQuestions.size() + ".xml"));
+            xmlFileName = metadata.correctFileName("Pergunta" + visibleQuestions.size() + ".xml");
         }
 
+        Question question = new Question(xmlFileName, xmlFile, true);
         question.setMetadata(metadata);
         ParseSubQuestion parse = new ParseSubQuestion();
         try {
