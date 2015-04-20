@@ -18,7 +18,7 @@
  */
 /*
  * Created on 23/Set/2003
- *  
+ * 
  */
 package org.fenixedu.academic.service.services.teacher.onlineTests;
 
@@ -71,11 +71,8 @@ public class InsertExerciseVariation {
                 ParseSubQuestion parseQuestion = new ParseSubQuestion();
 
                 parseQuestion.parseSubQuestion(xmlFile);
-                Question question = new Question();
+                Question question = new Question(metadata.correctFileName(xmlFileName), xmlFile, true);
                 question.setMetadata(metadata);
-                question.setXmlFile(xmlFile);
-                question.setXmlFileName(metadata.correctFileName(xmlFileName));
-                question.setVisibility(new Boolean("true"));
             } catch (ParseQuestionException e) {
                 badXmls.add(xmlFileName + e);
             }

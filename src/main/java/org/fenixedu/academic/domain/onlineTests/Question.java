@@ -22,6 +22,7 @@
  */
 package org.fenixedu.academic.domain.onlineTests;
 
+import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,6 +38,12 @@ public class Question extends Question_Base {
     public Question() {
         super();
         setRootDomainObject(Bennu.getInstance());
+    }
+
+    public Question(String fileName, String xmlFile, boolean visibility) {
+        this();
+        setVisibility(visibility);
+        setQuestionFile(new QuestionFile(this, fileName, xmlFile));
     }
 
     public void delete() {
@@ -59,17 +66,28 @@ public class Question extends Question_Base {
         return ParseSubQuestion.getSubQuestionFor(this);
     }
 
-    // public SubQuestion getSubQuestionByItem(String itemId) {
-    // for (SubQuestion subQuestion : getSubQuestions()) {
-    // if (itemId != null && subQuestion.getItemId() != null) {
-    // if (itemId.equals(subQuestion.getItemId())) {
-    // return subQuestion;
-    // }
-    // } else if (itemId == null && subQuestion.getItemId() == null) {
-    // return subQuestion;
-    // }
-    // }
-    // return null;
-    // }
+    @Override
+    public String getXmlFile() {
+        if (getQuestionFile() != null) {
+            return new String(getQuestionFile().getContent(), StandardCharsets.UTF_8);
+        }
+        return super.getXmlFile();
+    }
+
+    @Override
+    public String getXmlFileName() {
+        if (getQuestionFile() != null) {
+            return getQuestionFile().getFilename();
+        }
+        return super.getXmlFileName();
+    }
+
+    protected void ensureFileInitialized() {
+        if (getQuestionFile() == null) {
+            setQuestionFile(new QuestionFile(this, getXmlFileName(), getXmlFile()));
+        }
+        setXmlFile(null);
+        setXmlFileName(null);
+    }
 
 }
