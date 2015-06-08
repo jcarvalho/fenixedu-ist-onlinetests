@@ -37,7 +37,7 @@
 				<select name="executionPeriodID" onchange="this.form.submit();">
 					<option value=""><bean:message key="option.all.execution.periods"></bean:message></option>
 					<c:forEach items="${semesters}" var="semester">
-						<option value="${semester.externalId}" ${semester == executionPeriod ? 'selected' : ''}>${semester.qualifiedName}</option>
+						<option value="${semester.externalId}" ${semester == executionPeriod ? 'selected' : ''}><c:out value="${semester.qualifiedName}"/></option>
 					</c:forEach>
 				</select>
 			</fr:form>
@@ -68,7 +68,7 @@
 				<td style="width: 450px;">
 					<strong>
 						<html:link page="/testsManagement.do?method=testsFirstPage&executionCourseID=${executionCourse.externalId}">
-							${executionCourse.nome} (${executionCourse.sigla})
+							<c:out value="${executionCourse.nome}"/> (<c:out value="${executionCourse.sigla}"/>)
 						</html:link>
 					</strong>
 					
