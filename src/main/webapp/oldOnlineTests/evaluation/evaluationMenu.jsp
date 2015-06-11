@@ -87,7 +87,7 @@
 	</nav>
 	<main class="col-lg-10">
 		<ol class="breadcrumb">
-			<em>${executionCourse.name} - ${executionCourse.executionPeriod.qualifiedName}
-				(<c:forEach var="degree" items="${executionCourse.degreesSortedByDegreeName}"> ${degree.sigla} </c:forEach>)
+			<em><c:out value="${executionCourse.name}"/> - <c:out value="${executionCourse.executionPeriod.qualifiedName}"/>
+				(<c:forEach var="degree" items="${executionCourse.degreesSortedByDegreeName}"> <c:out value="${degree.sigla}"/> </c:forEach>)
 			</em>
 		</ol>
