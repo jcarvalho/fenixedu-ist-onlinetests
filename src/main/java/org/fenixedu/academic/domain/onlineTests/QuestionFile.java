@@ -18,4 +18,10 @@ class QuestionFile extends QuestionFile_Base {
         return false;
     }
 
+    @Override
+    public void delete() {
+        setQuestion(null);
+        super.delete();
+    }
+
 }

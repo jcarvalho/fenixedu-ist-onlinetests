@@ -51,6 +51,10 @@ public class Question extends Question_Base {
         setRootDomainObject(null);
         getStudentTestsQuestionsSet().clear();
         getTestQuestionsSet().clear();
+        QuestionFile qf = getQuestionFile();
+        if (qf != null) {
+            qf.delete();
+        }
         super.deleteDomainObject();
     }
 
